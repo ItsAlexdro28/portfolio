@@ -16,10 +16,6 @@ const Portfolio = () => {
     setLanguage(prev => prev === 'en' ? 'es' : 'en')
   }
 
-  const toggleDarkMode = () => {
-    setDarkMode(prev => !prev)
-  }
-
   const content = {
     en: {
       about: "About Me",
@@ -44,7 +40,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1e1e2e] text-white font-sans w-full">
+    <div className="min-h-screen bg-[#1e1e2e] text-white font-sans w-screen">
       <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-[#2d2640] z-10">
         <motion.div
           className="flex space-x-2"
@@ -54,39 +50,45 @@ const Portfolio = () => {
         >
           <button
             onClick={toggleLanguage}
-            className="p-2 bg-[#8b5cf6] rounded-full text-white hover:bg-[#7c3aed] transition-colors"
+            className="p-2 bg-[#8b5cf6] rounded-full text-white hover:bg-[#7c3aed] transition-colors w-10"
           >
             {language === 'en' ? 'EN' : 'ES'}
           </button>
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 bg-[#8b5cf6] rounded-full text-white hover:bg-[#7c3aed] transition-colors"
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
         </motion.div>
-        <h1 className="text-2xl font-bold">Portfolio</h1>
+        <h1 className="text-2xl font-bold">
+          {language === 'en'
+            ? "Personal page"
+            : "Portafolio personal"}
+        </h1>
       </nav>
 
-      <main className="pt-20 px-4 md:px-8 lg:px-16 space-y-20">
-        <section id="about" className="flex flex-col items-center my-5">
-          <User className="w-12 h-12 mb-4 text-[#d946ef]" />
-          <h2 className="text-3xl font-bold mb-4">{content[language].about}</h2>
-          <p className="text-center max-w-2xl">
-            {language === 'en' 
-              ? "I'm a passionate developer with a keen eye for design and a love for creating intuitive, user-friendly applications."
-              : "Soy un desarrollador apasionado con un ojo agudo para el diseño y un amor por crear aplicaciones intuitivas y fáciles de usar."}
-          </p>
+      <main className="pt-20 px-4 md:px-8 lg:px-16 space-y-80 my-40">
+        <section id="about" className="flex flex-row items-center my-5">
+          <div className="w-1/2 flex flex-col items-center">
+            <User className="w-12 h-12 mb-4 text-[#d946ef]" />
+          </div>
+          <div className="w-1/2 flex flex-col items-center">
+            <h2 className="text-6xl font-bold mb-4">{content[language].about}</h2>
+            <p className="text-center max-w-2xl">
+              {language === 'en' 
+                ? "I'm a developer Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text ."
+                : "Soy un desarrollador Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno."}
+            </p>
+          </div>
         </section>
 
-        <section id="objective" className="flex flex-col items-center">
-          <Target className="w-12 h-12 mb-4 text-[#8b5cf6]" />
-          <h2 className="text-3xl font-bold mb-4">{content[language].objective}</h2>
-          <p className="text-center max-w-2xl">
-            {language === 'en'
-              ? "To leverage my skills in web development to create impactful digital solutions that solve real-world problems."
-              : "Aprovechar mis habilidades en desarrollo web para crear soluciones digitales impactantes que resuelvan problemas del mundo real."}
-          </p>
+        <section id="objective" className="flex flex-row items-center">
+          <div className="w-1/2 flex flex-col items-center">
+            <h2 className="text-6xl font-bold mb-4">{content[language].objective}</h2>
+            <p className="text-center max-w-2xl">
+              {language === 'en'
+                ? "To leverage my skills in web development to create impactful digital solutions that solve real-world problems."
+                : "Aprovechar mis habilidades en desarrollo web para crear soluciones digitales impactantes que resuelvan problemas del mundo real."}
+            </p>
+          </div>
+          <div className="w-1/2 flex flex-col items-center">
+            <Target className="w-12 h-12 mb-4 text-[#8b5cf6]" />
+          </div>
         </section>
 
         <section id="mission-vision" className="flex flex-col md:flex-row justify-center items-start space-y-8 md:space-y-0 md:space-x-8">
