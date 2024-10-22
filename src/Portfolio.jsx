@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Sun, Moon, Code, Briefcase, Mail, User, Target, Lightbulb, Layers } from 'lucide-react'
+import './App.css' 
 
 
 const Portfolio = () => {
@@ -40,7 +41,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1e1e2e] text-white font-sans w-screen">
+    <div className="min-h-screen background-color text-white font-sans w-full">
       <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-[#2d2640] z-10">
         <motion.div
           className="flex space-x-2"
@@ -55,14 +56,14 @@ const Portfolio = () => {
             {language === 'en' ? 'EN' : 'ES'}
           </button>
         </motion.div>
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold px-3">
           {language === 'en'
             ? "Personal page"
             : "Portafolio personal"}
         </h1>
       </nav>
 
-      <main className="pt-20 px-4 md:px-8 lg:px-16 space-y-80 my-40">
+      <main className="pt-64 px-4 md:px-8 lg:px-16 space-y-80 mx-12">
         <section id="about" className="flex flex-row items-center my-5">
           <div className="w-1/2 flex flex-col items-center">
             <User className="w-12 h-12 mb-4 text-[#d946ef]" />
