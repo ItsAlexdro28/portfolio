@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Sun, Moon, Code, Briefcase, Mail, User, Target, Lightbulb, Layers } from 'lucide-react'
+import { GrArchlinux, GrReactjs, GrNode } from 'react-icons/gr'
 import './App.css' 
 
 
@@ -40,6 +41,19 @@ const Portfolio = () => {
     }
   }
 
+  const technologies = [
+    { name: 'Arch Linux', logo: <GrArchlinux /> },
+    { name: 'React', logo: <GrReactjs /> },
+    { name: 'Node.js', logo: <GrNode /> },
+    // Add additional technologies here
+  ]
+  
+  const personalProjects = [
+    { name: 'Project X', logo: <GrReactjs /> },
+    { name: 'Project Y', logo: <GrNode /> },
+    // Add additional projects here
+  ]
+
   return (
     <div className="min-h-screen background-color text-white font-sans w-full">
       <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-[#2d2640] z-10">
@@ -74,7 +88,7 @@ const Portfolio = () => {
               {language === 'en' 
                 ? "I'm a developer Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text ."
                 : "Soy un desarrollador Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno."}
-            </p>
+            </p><GrArchlinux />
           </div>
         </section>
 
@@ -124,28 +138,43 @@ const Portfolio = () => {
           </ul>
         </section>
 
-        <section id="technologies" className="flex flex-col items-center">
-          <Code className="w-12 h-12 mb-4 text-[#22d3ee]" />
+
+	    <section id="technologies" className="flex flex-col items-center space-y-8">
           <h2 className="text-3xl font-bold mb-4">{content[language].technologies}</h2>
-          <div className="flex flex-wrap justify-center gap-4 max-w-2xl">
-            {['React', 'Node.js', 'TypeScript', 'GraphQL', 'Tailwind CSS', 'Next.js'].map((tech, index) => (
-              <span key={index} className="px-3 py-1 bg-[#4c1d95] rounded-full text-sm">{tech}</span>
-            ))}
+      
+	  	  <div className='flex flex-row w-5/6 my-12'>
+          <div className="w-full flex flex-col items-center space-y-4">
+            <h3 className="text-2xl font-semibold mb-2">Professional Technologies</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {technologies.map((tech, index) => (
+                <motion.div
+                  key={index}
+                  className="p-4 bg-[#4c1d95] rounded-lg flex flex-col items-center transition-transform transform hover:scale-105"
+                >
+                  <div className="text-4xl mb-2">{tech.logo}</div>
+                  <span className="underline text-sm">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+      
+          <div className="w-full flex flex-col items-center space-y-4">
+            <h3 className="text-2xl font-semibold mb-2">Personal Projects</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {personalProjects.map((project, index) => (
+                <motion.div
+                  key={index}
+                  className="p-4 bg-[#1d4c95] rounded-lg flex flex-col items-center transition-transform transform hover:scale-105"
+                >
+                  <div className="text-4xl mb-2">{project.logo}</div>
+                  <span className="underline text-sm">{project.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
           </div>
         </section>
 
-        <section id="projects" className="flex flex-col items-center">
-          <Briefcase className="w-12 h-12 mb-4 text-[#f59e0b]" />
-          <h2 className="text-3xl font-bold mb-4">{content[language].projects}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
-            {[1, 2, 3].map((project) => (
-              <div key={project} className="bg-[#2d2640] p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold mb-2">{language === 'en' ? `Project ${project}` : `Proyecto ${project}`}</h3>
-                <p>{language === 'en' ? "Description of the project goes here." : "La descripción del proyecto va aquí."}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         <section id="contact" className="flex flex-col items-center">
           <Mail className="w-12 h-12 mb-4 text-[#f43f5e]" />
