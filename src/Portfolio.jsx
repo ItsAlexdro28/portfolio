@@ -21,6 +21,7 @@ import andesintro from '/andesintro.png'
 import samsung1 from '/samsung1.png'
 import samsung2 from '/samsung2.png'
 import CertificatesGrid from './certificates'
+import emailjs from "@emailjs/browser";
 
 
 const Portfolio = () => {
@@ -96,6 +97,38 @@ const Portfolio = () => {
 	samsung1, samsung2, andesintro, andesdesing, andesagile, andes3d
   ]
 
+  const [formData, setFormData] = useState({
+    email: "",
+    message: ""
+  });
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setIsSending(true);
+
+    try {
+      await emailjs.send(
+        "service_l3udgsd",
+        "template_cugii1p",
+        formData,
+        "0zu_ZNIAI7HrUncXM"
+      );
+      setIsSent(true);
+    } catch (error) {
+      console.error("Error sending email:", error);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+
   return (
     <div className="min-h-screen background-color text-white font-sans w-full">
       <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-[#2d2640] z-10">
@@ -112,18 +145,21 @@ const Portfolio = () => {
             {language === 'en' ? 'EN' : 'ES'}
           </button>
         </motion.div>
-        <h1 className="text-2xl font-bold px-3">
-          {language === 'en'
-            ? "Personal page"
-            : "Portafolio personal"}
-        </h1>
+	    <div className="flex flex-row items-center">
+          <h1 className="text-2xl font-bold px-3 mr-8">
+            {language === 'en'
+              ? "Personal page"
+              : "Portafolio personal"}
+          </h1>
+	  	  <img src="/favicon.ico" alt="" className='object-cover h-16 w-16' />
+	  	</div>
       </nav>
 
       <main className="pt-64 px-4 md:px-8 lg:px-16 md:space-y-96 space-y-48 lg:mx-12">
         <section id="about" className="flex flex-col items-center my-5 md:flex-row">
           <div className="w-1/2 flex flex-col items-center">
 			<Reveal>
-			  <User className="w-12 h-12 mb-4 text-[#d946ef]" />
+	  		  <img src="/foto.jpeg" alt="" className='object-cover h-80 rounded-lg mb-8' />
 			</Reveal>
 			<Reveal>
 			<a href={CV} target='_blank'>
@@ -142,8 +178,8 @@ const Portfolio = () => {
 			<Reveal>
             <p className="text-center max-w-2xl text-xl">
               {language === 'en' 
-                ? "I'm a developer Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text ."
-                : "Soy un desarrollador Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno Texto de relleno."}
+                ? "I am a developer driven by creating efficient, user-centered solutions that meet business standards. With a talent for problem-solving and quickly adopting new technologies, I bring strengths in collaboration, clear communication, and adaptability, seeking challenges that foster growth and allow me to make a meaningful impact in dynamic team environments."
+                : "Soy un desarrollador enfocado en crear soluciones eficientes y centradas en el usuario que cumplan con los estándares empresariales. Con habilidad para resolver problemas y adaptarme rápidamente a nuevas tecnologías, destaco por mi capacidad de colaboración, comunicación clara y adaptabilidad. Busco desafíos que impulsen mi crecimiento y me permitan aportar de manera significativa en entornos de equipo dinámicos."}
             </p>
 			</Reveal>
           </div>
@@ -157,8 +193,8 @@ const Portfolio = () => {
 			<Reveal>
             <p className="text-center max-w-2xl text-xl">
               {language === 'en'
-                ? "To leverage my skills in web development to create impactful digital solutions that solve real-world problems."
-                : "Aprovechar mis habilidades en desarrollo web para crear soluciones digitales impactantes que resuelvan problemas del mundo real."}
+                ? "To be a well-rounded professional in technology development, capable of implementing and supporting innovative solutions that create a positive and transformative impact across various sectors. My goal is to leverage emerging technologies and leadership skills to optimize processes, foster collaboration, and contribute to sustainable growth that drives efficiency and quality in every solution."
+                : "Ser un profesional integral en el desarrollo tecnológico, capaz de implementar y apoyar soluciones innovadoras que generen un impacto positivo y transformador en distintos sectores. Mi objetivo es aprovechar tecnologías emergentes y habilidades de liderazgo para optimizar procesos, fomentar la colaboración y contribuir a un crecimiento sostenible que impulse la eficiencia y calidad en cada solución."}
             </p>
 			</Reveal>
           </div>
@@ -180,8 +216,8 @@ const Portfolio = () => {
 			<Reveal>
             <p className="text-center text-xl">
               {language === 'en'
-                ? "To continuously innovate and push the boundaries of web technology, creating seamless and engaging user experiences."
-                : "Innovar continuamente y empujar los límites de la tecnología web, creando experiencias de usuario fluidas y atractivas."}
+                ? "Develop effective digital solutions that address specific business problems, collaborating seamlessly with teams of any size. I approach each challenge as an opportunity to strengthen analytical skills and time management, strategically prioritizing tasks while maintaining a constant balance between technology and the human element."
+                : "Desarrollar soluciones digitales efectivas que aborden problemas empresariales específicos, colaborando de manera fluida con equipos de cualquier tamaño. Aprovecho cada desafío como una oportunidad para fortalecer el análisis y la gestión del tiempo, priorizando de manera estratégica y manteniendo un equilibrio constante entre la tecnología y el factor humano."}
             </p>
 			</Reveal>
           </div>
@@ -195,8 +231,8 @@ const Portfolio = () => {
 			<Reveal>
             <p className="text-center text-xl">
               {language === 'en'
-                ? "To be at the forefront of web development, setting new standards for performance, accessibility, and design."
-                : "Estar a la vanguardia del desarrollo web, estableciendo nuevos estándares de rendimiento, accesibilidad y diseño."}
+                ? "To specialize in full-stack development, leveraging emerging technologies and building my experience through personal projects and collaborations with innovation-focused companies. To strengthen my professional network while acquiring the skills needed to advance my career, inspiring confidence and leadership at every stage of my professional growth."
+                : "Especializarme en desarrollo fullstack, aprovechando diversas tecnologías emergentes y consolidando mi experiencia a través de proyectos personales y colaboraciones con empresas orientadas a la innovación. Fortalecer mis conexiones profesionales mientras adquiero las habilidades necesarias para avanzar en mi carrera, inspirando confianza y liderazgo en cada etapa de mi crecimiento profesional."}
             </p>
 			</Reveal>
           </div>
@@ -206,6 +242,9 @@ const Portfolio = () => {
 		  <Reveal>
           <Briefcase className="w-12 h-12 mb-4 text-[#14b8a6]" />
 		  </Reveal>
+			<Reveal>
+            <h2 className="text-4xl font-bold mb-4 text-nowrap">{content[language].certificates}</h2>
+			</Reveal>
 		  <CertificatesGrid certificates={certificates} />
         </section>
 
@@ -295,29 +334,50 @@ const Portfolio = () => {
 		  <Reveal>
           <h2 className="text-3xl font-bold mb-4 text-nowrap">{content[language].contact}</h2>
 		  </Reveal>
-          <form className="w-full max-w-md">
-		  <Reveal>
-            <input 
-              type="email" 
-              placeholder={language === 'en' ? "Your email" : "Tu correo electrónico"} 
-              className="w-full p-2 mb-4 bg-[#2d2640] rounded"
-            />
-		  </Reveal>
-		  <Reveal>
-            <textarea 
-              placeholder={language === 'en' ? "Your message" : "Tu mensaje"} 
-              className="w-full p-2 mb-4 bg-[#2d2640] rounded h-32"
-            ></textarea>
-		  </Reveal>
-		  <Reveal>
-            <button 
-              type="submit" 
-              className="w-full p-2 bg-[#8b5cf6] rounded text-white hover:bg-[#7c3aed] transition-colors"
-            >
-              {language === 'en' ? "Send" : "Enviar"}
-            </button>
-		  </Reveal>
-          </form>
+
+		  <form className="w-full max-w-md" onSubmit={sendEmail}>
+    	    <Reveal>
+    	      <input
+    	        type="email"
+    	        name="email"
+    	        value={formData.email}
+    	        onChange={handleInputChange}
+    	        placeholder={language === "en" ? "Your email" : "Tu correo electrónico"}
+    	        className="w-full p-2 mb-4 bg-[#2d2640] rounded"
+    	        required
+    	      />
+    	    </Reveal>
+    	    <Reveal>
+    	      <textarea
+    	        name="message"
+    	        value={formData.message}
+    	        onChange={handleInputChange}
+    	        placeholder={language === "en" ? "Your message" : "Tu mensaje"}
+    	        className="w-full p-2 mb-4 bg-[#2d2640] rounded h-32"
+    	        required
+    	      ></textarea>
+    	    </Reveal>
+    	    <Reveal>
+    	      <button
+    	        type="submit"
+    	        className="w-full p-2 bg-[#8b5cf6] rounded text-white hover:bg-[#7c3aed] transition-colors"
+    	        disabled={isSending}
+    	      >
+    	        {isSending
+    	          ? language === "en"
+    	            ? "Sending..."
+    	            : "Enviando..."
+    	          : isSent
+    	          ? language === "en"
+    	            ? "Sent!"
+    	            : "¡Enviado!"
+    	          : language === "en"
+    	          ? "Send"
+    	          : "Enviar"}
+    	      </button>
+    	    </Reveal>
+    	  </form>
+
         </section>
       </main>
 

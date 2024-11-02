@@ -18,7 +18,6 @@ const CertificatesGrid = ({ certificates }) => {
   return (
     <Fragment>
       <section id="certificates" className="flex flex-col items-center">
-        <h2 className="text-4xl font-bold mb-4 text-nowrap">Certificates</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full max-w-6xl p-4">
           {certificates.map((certificate) => (
             <Reveal>
